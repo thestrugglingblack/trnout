@@ -1,4 +1,10 @@
 console.log("I AM WORKING");
 
-URL
-https://api.meetup.com/:urlname/events/:event_id/rsvps
+var url="https://api.meetup.com/Women-Who-Code-DC/events/228457104/rsvps";
+
+$.ajax({
+  url: url,
+  data: data,
+  success: success,
+  dataType: dataType
+});
