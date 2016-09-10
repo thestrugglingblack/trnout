@@ -1,29 +1,37 @@
 console.log("I AM WORKING");
 
 $(document).ready(function () {
-  var url="https://api.meetup.com/Women-Who-Code-DC/events/228457104/rsvps";
+
+  var urlEvent="https://api.meetup.com/Women-Who-Code-DC/events/228457104";
 
   $.ajax({
-    url: url,
     method: 'GET',
+    url: urlEvent,
     dataType: 'jsonp',
-    success: function(response){
-      console.log("THE RESPONSE", response);
+    success: function (response) {
+      addEventInfo(response);
     },
-    error: function(error) {
-      console.log("THE ERROR", error);
-
+    error: function (error) {
+      console.error(error);
     }
   });
 
-  ///addEvent Information
-  function adEventInfo (data){
-    
-    var addEvent = {
-      eName: eName,
-      eLocation: eLocation,
-      eTime: eTime,
-      eRsvps: eRsvps
-    }
-  }
 });
+
+
+function addEventInfo(response) {
+
+  eventInfo = {
+    name: response.data.name,
+    location: response.data.venue.address_1,
+    time: response.data.time,
+    rsvps: response.data.yes_rsvp_count,
+    info: response.data.description
+  }
+  console.log("THE RESPONSE", response);
+
+  console.log("EVENT INFO", eventInfo);
+
+  
+}
+addEventInfo();
