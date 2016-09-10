@@ -32,6 +32,9 @@ function addEventInfo(response) {
 
   console.log("EVENT INFO", eventInfo);
 
-  
+  $eventName = $('.event-name-label')
+  $eventName.append('<p>' + eventInfo.name + '</p>');
+
+
 }
 addEventInfo();
