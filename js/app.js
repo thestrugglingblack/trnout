@@ -1,23 +1,30 @@
 console.log("I AM WORKING");
 
-function fetchData(url,successMethod) {
+
+//generic method call
+function fetchData(url) {
   $.ajax({
     method: 'GET',
     url: url,
     dataType: 'jsonp',
-    success: successMethod,
+    success: function (response) {
+      console.log(response);
+    },
     error: function (error){
       console.error(error);
     }
   });
 }
 
-function itWork(response) {
-  console.log("It work", response);
+//have it connected to button
+function getEvents (response){
+  var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
+  fetchData(eventsUrl);
 }
 
 
-fetchData("https://api.meetup.com/Women-Who-Code-DC/events/228457104", itWork);
+
+
 
 
 // $(document).ready(function () {
