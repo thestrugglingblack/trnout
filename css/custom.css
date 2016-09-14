@@ -1,0 +1,13 @@
+*{ border: 1px solid red; }
+
+.navbar {
+  height: 10%;
+}
+
+.sidebar{
+  height: 90%;
+}
+
+.content-area {
+  height: 90%;
+}

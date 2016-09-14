@@ -9,20 +9,41 @@ function fetchData(url) {
     dataType: 'jsonp',
     success: function (response) {
       console.log(response);
+      return response;
     },
     error: function (error){
       console.error(error);
     }
   });
 }
+$(document).ready(function(){
 
-//have it connected to button
-function getEvents (response){
-  var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
-  fetchData(eventsUrl);
-}
+  $eventLink = $(".events-link"); //events link
+  $
+
+  //Events Link
+  $eventLink.on('click',function(e){
+    e.preventDefault();
+    console.log("Active Link");
+    (function () {
+      var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
+        fetchData(eventsUrl)
+
+      
+      } ());
 
 
+  });
+
+
+
+
+});
+
+
+
+//
+//
 
 
 

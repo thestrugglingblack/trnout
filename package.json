@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/ZuriHunter/trnout#readme",
   "dependencies": {
-    "flexboxgrid": "^6.3.1",
     "jquery": "^3.1.0"
   }
 }
