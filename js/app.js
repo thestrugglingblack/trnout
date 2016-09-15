@@ -16,16 +16,29 @@ function fetchData(url, successResponse) {
 
 //parse through Events Data
 function parseEventsData(response) {
-  // console.log(response);
-  data = response;
-  console.log(data);
+  console.log(response);
+
 
   //loop through data
-  for(var i = 0; i < data.data.length; i++){
-    console.log("this data", data.data[i]);
+  for(var i = 0; i < 99; i++){
+    data = response.data;
+
+    var eventData = {
+      eventId: data[i].id,
+      eventName: data[i].name ,
+      eventTime: data[i].time,
+      eventLocationName: data[i].venue.name ,
+      eventAddress: data[i].venue.address_1,
+      eventCity: data[i].venue.city,
+      eventState: data[i].venue.state,
+      eventDescription: data[i].description ,
+      eventRsvpCount: data[i].yes_rsvp_count
+    }
+
+    //post data to html
+
   }
 
-  //post data to html
 
 }
 
