@@ -1,30 +1,37 @@
-console.log("I AM WORKING");
-
-
 //generic method call
-function fetchData(url) {
-  data = null;
-  $.ajax({
-    method: 'GET',
-    url: url,
-    dataType: 'jsonp',
-    success: function (response) {
-      data = response;
-    },
-    error: function (error){
-      console.error(error);
-    }
-  })
+function fetchData(url, successResponse) {
+    var data;
+      $.ajax({
+          method: 'GET',
+          async: false,
+          url: url,
+          dataType: 'jsonp',
+          success: successResponse,
+          error: function (error){
+            console.error(error);
+          }
+      });
+}
 
-  return data;
-  // For getting the response from API into a variable for manipulation
-  // http://stackoverflow.com/questions/16805306/jquery-return-ajax-result-into-outside-variable
+
+//parse through Events Data
+function parseEventsData(response) {
+  // console.log(response);
+  data = response;
+  console.log(data);
+
+  //loop through data
+  for(var i = 0; i < data.data.length; i++){
+    console.log("this data", data.data[i]);
+  }
+
+  //post data to html
+
 }
 
 $(document).ready(function(){
 
   $eventLink = $(".events-link"); //events link
-  $
 
   //Events Link
   $eventLink.on('click',function(e){
@@ -32,15 +39,13 @@ $(document).ready(function(){
     console.log("Active Link");
     (function () {
         var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
-        fetchData(eventsUrl)
+        fetchData(eventsUrl, parseEventsData)
       }());
 
   });
-
-
-
-
 });
+
+
 
 
 
