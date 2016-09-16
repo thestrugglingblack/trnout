@@ -19,6 +19,7 @@ function parseEventsData(response) {
   //loop through data
   for(var i=0; i < response.data.length; i++){
 
+      // assign data path for each variable
       var eventId = response.data[i].id;
       var eventName = response.data[i].name;
       var eventTime = response.data[i].time;
@@ -51,7 +52,20 @@ function parseEventsData(response) {
           eventCity: eventCity,
           eventState: eventState
         }
-        // console.log("Each event info", eventData);
+        // console.log("Each event info", eventRsvpCount);
+
+        //add eventData to page
+
+         $postEventData = $('.event-data-section')
+          $postEventData.append(
+                                '<a href="\''+ eventData.eventId + '\"/><br>' +
+                                '<h2>' + eventData.eventName + '</h2><br>' +
+                                '<h3>' + eventData.eventLocationName +'</h3><br>' +
+                                '<p>' + eventData.eventAddress + '<br> ' +
+                                eventData.eventCity + ', ' +
+                                eventData.eventState + '</p>' + eventData.eventDescription + ' ' + '<b>'+
+                                eventData.eventRsvpCount + '</b> </a> <hr>'
+                              );
 
   }
 
@@ -128,7 +142,3 @@ $(document).ready(function(){
 //
 // }
 // addEventInfo();
-//
-// function addRsvps(response) {
-//
-// }
