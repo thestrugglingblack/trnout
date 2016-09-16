@@ -16,26 +16,42 @@ function fetchData(url, successResponse) {
 
 //parse through Events Data
 function parseEventsData(response) {
-  console.log(response);
-
-
   //loop through data
-  for(var i = 0; i < 99; i++){
-    data = response.data;
+  for(var i=0; i < response.data.length; i++){
 
-    var eventData = {
-      eventId: data[i].id,
-      eventName: data[i].name ,
-      eventTime: data[i].time,
-      eventLocationName: data[i].venue.name ,
-      eventAddress: data[i].venue.address_1,
-      eventCity: data[i].venue.city,
-      eventState: data[i].venue.state,
-      eventDescription: data[i].description ,
-      eventRsvpCount: data[i].yes_rsvp_count
-    }
+      var eventId = response.data[i].id;
+      var eventName = response.data[i].name;
+      var eventTime = response.data[i].time;
+      var eventDescription = response.data[i].description;
+      var eventRsvpCount = response.data[i].yes_rsvp_count;
 
-    //post data to html
+      //to address events that don't have venues
+      if(typeof response.data[i].venue === 'undefined')
+         {
+           var eventLocationName = 'TBD';
+           var eventAddress = 'TBD';
+           var eventCity = 'TBD';
+           var eventState = 'TBD';
+
+         } else {
+           var eventLocationName = response.data[i].venue.name;
+           var eventAddress = response.data[i].venue.address_1;
+           var eventCity = response.data[i].venue.city;
+           var eventState = response.data[i].venue.state;
+         }
+
+        var eventData = {
+          eventId: eventId,
+          eventName: eventName,
+          eventTime: eventTime,
+          eventDescription: eventDescription,
+          eventRsvpCount: eventRsvpCount,
+          eventLocationName: eventLocationName,
+          eventAddress: eventAddress,
+          eventCity: eventCity,
+          eventState: eventState
+        }
+        // console.log("Each event info", eventData);
 
   }
 
