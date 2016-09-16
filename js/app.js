@@ -27,7 +27,7 @@ function parseEventsData(response) {
       var eventRsvpCount = response.data[i].yes_rsvp_count;
 
       //to address events that don't have venues
-      if(typeof response.data[i].venue === 'undefined')
+      if( typeof response.data[i].venue === 'undefined' )
          {
            var eventLocationName = 'TBD';
            var eventAddress = 'TBD';
@@ -55,7 +55,6 @@ function parseEventsData(response) {
         // console.log("Each event info", eventRsvpCount);
 
         //add eventData to page
-
          $postEventData = $('.event-data-section')
           $postEventData.append(
                                 '<a href="\''+ eventData.eventId + '\"/><br>' +
@@ -68,15 +67,19 @@ function parseEventsData(response) {
                               );
 
   }
+}
 
-
+// parse through Rsvp Data
+function parseRsvpData(response) {
+  console.log("Parsing through data");
 }
 
 $(document).ready(function(){
 
   $eventLink = $(".events-link"); //events link
+  $selectEvent = $("");
 
-  //Events Link
+  //Events Link Action
   $eventLink.on('click',function(e){
     e.preventDefault();
     console.log("Active Link");
@@ -86,59 +89,17 @@ $(document).ready(function(){
       }());
 
   });
+
+  //Selected Event Action
+  $selectEvent.on('click', function(e, eventId) {
+    e.preventDefault();
+    console.log("Active Link for selected Event");
+    (function () {
+      var selectedEventUrl = ''+ eventId;
+      console.log('The selected event url', selectedEventUrl);
+      fetchData(selectedEventUrl, parseRsvpData);
+
+    }());
+  });
+
 });
-
-
-
-
-
-//
-//
-
-
-
-
-// $(document).ready(function () {
-
-  // var fetchData = function(url) {
-  // var urlEvent="https://api.meetup.com/Women-Who-Code-DC/events/228457104";
-  //
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: urlEvent,
-  //     dataType: 'jsonp',
-  //     success: function (response) {
-  //       addEventInfo(response);
-  //     },
-  //     error: function (error) {
-  //       console.error(error);
-  //     }
-  //   });
-  // };
-
-
-// });
-
-
-// function addEventInfo(response) {
-
-  // fetchData(urlEvent);
-
-  // console.log(fetchData);
-//   eventInfo = {
-//     name: response.data.name,
-//     location: response.data.venue.address_1,
-//     time: response.data.time,
-//     rsvps: response.data.yes_rsvp_count,
-//     info: response.data.description
-//   }
-//   console.log("THE RESPONSE", response);
-//
-//   console.log("EVENT INFO", eventInfo);
-//
-//   $eventName = $('.event-name-label')
-//   $eventName.append('<p>' + eventInfo.name + '</p>');
-//
-//
-// }
-// addEventInfo();
