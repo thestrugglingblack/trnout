@@ -1,13 +1,98 @@
-*{ border: 1px solid red; }
-
+*{
+  border: 1px solid red;
+}
 .navbar {
-  height: 10%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 10%;
+		width: 100%;
+		position: fixed;
+    z-index: 10;
+    background-color: blue;
 }
-
-.sidebar{
+html, body {
+  height: 100%;
+}
+.content-wrapper {
   height: 90%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.side-wrapper {
+  height: 90%;
+  background-color: green;
 }
 
+.image-container {
+  height: 40%;
+  padding: 10px 10px 10px 10px;
+}
+.info-container {
+  height: 60%;
+  padding: 10px 10px 10px 10px;
+}
+.image-wrapper {
+  padding: 20px 20px 20px 20px;
+}
+.side-menu {
+  overflow-y: scroll;
+}
 .content-area {
-  height: 90%;
+  overflow-y: scroll;
+  background-color: purple;
+
+}
+.logo-name {
+  font-size: 24px;
+  display: inline-block;
+  font-family: "raleway-regular", sans-serif;
+  color: #ffffff;
+}
+.logo {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 2px 2px 2px 2px;
+  text-decoration: none;
+}
+.logo-ps {
+  max-height: 60px;
+  max-width: 60px;
+}
+.links {
+  float: right;
+  padding-top: 1%;
+  font-size: 24px;
+}
+.content-card {
+  height: 30%;
+  min-height: 35%;
+  /*overflow-y: scroll;*/
+}
+.content-info {
+  max-height: 100%;
+  overflow: scroll;
+}
+
+.content {
+  padding: 10px 10px 10px 10px;
+}
+
+img {
+  max-width: 100%:
+  max-height: 100%;
+}
+
+.thumbnail {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail > img {
+  width: auto;
+  height : auto;
+  max-height: 100%;
+  max-width: 100%;
 }
