@@ -1,3 +1,5 @@
+
+
 //generic method call
 function fetchData(url, successResponse) {
     var data;
@@ -52,19 +54,19 @@ function parseEventsData(response) {
           eventCity: eventCity,
           eventState: eventState
         }
-        // console.log("Each event info", eventRsvpCount);
+        console.log(eventData);
 
         //add eventData to page
-         $postEventData = $('.event-data-section')
-          $postEventData.append(
-                                '<a href="\''+ eventData.eventId + '\"/><br>' +
-                                '<h2>' + eventData.eventName + '</h2><br>' +
-                                '<h3>' + eventData.eventLocationName +'</h3><br>' +
-                                '<p>' + eventData.eventAddress + '<br> ' +
-                                eventData.eventCity + ', ' +
-                                eventData.eventState + '</p>' + eventData.eventDescription + ' ' + '<b>'+
-                                eventData.eventRsvpCount + '</b> </a> <hr>'
-                              );
+        //  $postEventData = $('.event-data-section')
+        //   $postEventData.append(
+        //                         '<a href="\''+ eventData.eventId + '\"/><br>' +
+        //                         '<h2>' + eventData.eventName + '</h2><br>' +
+        //                         '<h3>' + eventData.eventLocationName +'</h3><br>' +
+        //                         '<p>' + eventData.eventAddress + '<br> ' +
+        //                         eventData.eventCity + ', ' +
+        //                         eventData.eventState + '</p>' + eventData.eventDescription + ' ' + '<b>'+
+        //                         eventData.eventRsvpCount + '</b> </a> <hr>'
+        //                       );
 
   }
 }
@@ -76,6 +78,13 @@ function parseRsvpData(response) {
 
 $(document).ready(function(){
 
+// Initial UI
+  $sideMenu = $('.side-menu');
+  $contentArea = $('.col-md-9');
+  $sideMenu.hide();
+  $contentArea.remove('col-md-9 content-area').toggleClass("col-md-12 content-area");
+
+
   $eventLink = $(".events-link"); //events link
   $selectEvent = $("");
 
@@ -83,6 +92,11 @@ $(document).ready(function(){
   $eventLink.on('click',function(e){
     e.preventDefault();
     console.log("Active Link");
+    //Adjust UI for events
+    $sideMenu.show();
+    $contentArea.remove('.col-md-12 content-area').toggleClass('.col-md-9 content-area');
+
+    //makes API call for Women Who Code Events 
     (function () {
         var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
         fetchData(eventsUrl, parseEventsData)
@@ -103,3 +117,43 @@ $(document).ready(function(){
   });
 
 });
+
+
+
+
+//////
+// process.stdin.resume();
+// process.stdin.setEncoding('ascii');
+//
+// var input_stdin = "";
+// var input_stdin_array = "";
+// var input_currentline = 0;
+//
+// process.stdin.on('data', function (data) {
+//     input_stdin += data;
+// });
+//
+// process.stdin.on('end', function () {
+//     input_stdin_array = input_stdin.split("\n");
+//     main();
+// });
+//
+// function readLine() {
+//     return input_stdin_array[input_currentline++];
+// }
+//
+// function main() {
+//     var n = parseInt(readLine());
+//     var arr = readLine().split(' ');
+//     var arr = arr.map(Number);
+//     console.log(arr)
+//     var sum = 0;
+//
+//     for(var i = 0; i < arr.length; i++){
+//         sum = sum + arr[i]
+//     }
+//     return sum
+//
+// }
+//
+// main(4);
