@@ -56,17 +56,7 @@ function parseEventsData(response) {
         }
         console.log(eventData);
 
-        //add eventData to page
-        //  $postEventData = $('.event-data-section')
-        //   $postEventData.append(
-        //                         '<a href="\''+ eventData.eventId + '\"/><br>' +
-        //                         '<h2>' + eventData.eventName + '</h2><br>' +
-        //                         '<h3>' + eventData.eventLocationName +'</h3><br>' +
-        //                         '<p>' + eventData.eventAddress + '<br> ' +
-        //                         eventData.eventCity + ', ' +
-        //                         eventData.eventState + '</p>' + eventData.eventDescription + ' ' + '<b>'+
-        //                         eventData.eventRsvpCount + '</b> </a> <hr>'
-        //                       );
+        addEvents(eventData);
 
   }
 }
@@ -74,6 +64,15 @@ function parseEventsData(response) {
 // parse through Rsvp Data
 function parseRsvpData(response) {
   console.log("Parsing through data");
+}
+
+// add Events to HTML
+function addEvents(events) {
+  var source = $('#event-template').html();
+  var template = Handlebars.compile(source);
+  var $body = $('.content-wrapper');
+    $body.append(template(events));
+
 }
 
 $(document).ready(function(){
@@ -96,7 +95,7 @@ $(document).ready(function(){
     $sideMenu.show();
     $contentArea.remove('.col-md-12 content-area').toggleClass('.col-md-9 content-area');
 
-    //makes API call for Women Who Code Events 
+    //makes API call for Women Who Code Events
     (function () {
         var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
         fetchData(eventsUrl, parseEventsData)
