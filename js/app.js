@@ -1,5 +1,3 @@
-
-
 //generic method call
 function fetchData(url, successResponse) {
     var data;
@@ -18,6 +16,7 @@ function fetchData(url, successResponse) {
 
 //parse through Events Data
 function parseEventsData(response) {
+
   //loop through data
   for(var i=0; i < response.data.length; i++){
 
@@ -43,6 +42,7 @@ function parseEventsData(response) {
            var eventState = response.data[i].venue.state;
          }
 
+        //place data in object
         var eventData = {
           eventId: eventId,
           eventName: eventName,
@@ -56,6 +56,7 @@ function parseEventsData(response) {
         }
         console.log(eventData);
 
+        //prints to HTML
         addEvents(eventData);
 
   }
@@ -90,7 +91,7 @@ $(document).ready(function(){
   $sideMenu.hide();
   $contentArea.remove('col-md-9 content-area').toggleClass("col-md-12 content-area");
 
-
+  //links for API calls
   $eventLink = $(".events-link"); //events link
   $selectEvent = $("");
 
@@ -98,6 +99,7 @@ $(document).ready(function(){
   $eventLink.on('click',function(e){
     e.preventDefault();
     console.log("Active Link");
+
     //Adjust UI for events
     $sideMenu.show();
     $contentArea.remove('.col-md-12 content-area').toggleClass('.col-md-9 content-area');
