@@ -75,6 +75,13 @@ function addEvents(events) {
 
 }
 
+function addRsvps(members) {
+  var source = $('#rsvp-template').html();
+  var template = Handlebars.compile(source);
+  var $body = $('.content-wrapper');
+    $body.append(template(events));
+}
+
 $(document).ready(function(){
 
 // Initial UI
@@ -116,43 +123,3 @@ $(document).ready(function(){
   });
 
 });
-
-
-
-
-//////
-// process.stdin.resume();
-// process.stdin.setEncoding('ascii');
-//
-// var input_stdin = "";
-// var input_stdin_array = "";
-// var input_currentline = 0;
-//
-// process.stdin.on('data', function (data) {
-//     input_stdin += data;
-// });
-//
-// process.stdin.on('end', function () {
-//     input_stdin_array = input_stdin.split("\n");
-//     main();
-// });
-//
-// function readLine() {
-//     return input_stdin_array[input_currentline++];
-// }
-//
-// function main() {
-//     var n = parseInt(readLine());
-//     var arr = readLine().split(' ');
-//     var arr = arr.map(Number);
-//     console.log(arr)
-//     var sum = 0;
-//
-//     for(var i = 0; i < arr.length; i++){
-//         sum = sum + arr[i]
-//     }
-//     return sum
-//
-// }
-//
-// main(4);
