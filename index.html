@@ -45,6 +45,7 @@
 
       <div class="col-md-9 content-area">
         <section class="content-wrapper">
+          <a class="get-rsvp">RSVP</a>
 
           <script id="event-template"  type="text/x-handlebars-template">
             <div class="content">
@@ -56,7 +57,7 @@
                     </div>
                   </div>
                   <div class="col-md-8 content-info">
-                    <a href="https://api.meetup.com/Women-Who-Code-DC/events/{{eventId}}/rsvps?&sign=true&photo-host=public"><h1>{{eventName}} | {{eventRsvpCount}}</h1></a>
+                    <h1>{{eventName}} | <a class="get-rsvp" id={{eventId}}>{{eventRsvpCount}}</h1></a>
                     <h4>
                       {{eventAddress}}<br />
                       {{eventCity}}, {{eventState}}

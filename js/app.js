@@ -65,6 +65,7 @@ function parseEventsData(response) {
 // parse through Rsvp Data
 function parseRsvpData(response) {
   console.log("Parsing through data");
+  console.log(response);
 }
 
 // add Events to HTML
@@ -76,6 +77,7 @@ function addEvents(events) {
 
 }
 
+//add RSVPS to HTML
 function addRsvps(members) {
   var source = $('#rsvp-template').html();
   var template = Handlebars.compile(source);
@@ -93,7 +95,7 @@ $(document).ready(function(){
 
   //links for API calls
   $eventLink = $(".events-link"); //events link
-  $selectEvent = $("");
+  $selectEvent = $(".get-rsvp"); //rsvp value
 
   //Events Link Action
   $eventLink.on('click',function(e){
@@ -113,15 +115,11 @@ $(document).ready(function(){
   });
 
   //Selected Event Action
-  $selectEvent.on('click', function(e, eventId) {
+  $selectEvent.on('click', function(e) {
     e.preventDefault();
     console.log("Active Link for selected Event");
-    (function () {
-      var selectedEventUrl = ''+ eventId;
-      console.log('The selected event url', selectedEventUrl);
-      fetchData(selectedEventUrl, parseRsvpData);
 
-    }());
+    //put the api key after the ?
   });
 
 });
