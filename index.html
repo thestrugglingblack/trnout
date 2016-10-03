@@ -45,8 +45,6 @@
 
       <div class="col-md-9 content-area">
         <section class="content-wrapper">
-          <a class="get-rsvp">RSVP</a>
-
           <script id="event-template"  type="text/x-handlebars-template">
             <div class="content">
               <div class="content-card">
@@ -57,7 +55,7 @@
                     </div>
                   </div>
                   <div class="col-md-8 content-info">
-                    <h1>{{eventName}} | <a class="get-rsvp" id={{eventId}}>{{eventRsvpCount}}</h1></a>
+                    <h1>{{eventName}} | <a class="get-rsvp" id={{realId}}>{{eventRsvpCount}}</a></h1>
                     <h4>
                       {{eventAddress}}<br />
                       {{eventCity}}, {{eventState}}
@@ -72,6 +70,28 @@
               </div>
             </div>
           </script>
+
+          <script id="rsvp-template"  type="text/x-handlebars-template">
+            <div class="content">
+              <div class="content-card">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="thumbnail">
+                      <img src="{{memberPhoto}}" />
+                    </div>
+                  </div>
+                  <div class="col-md-8 content-info">
+                    <h1>{{memberName}} | <a class="" id="">{{memberRsvpStatus}}</a></h1>
+                    <h4>
+                      {{memberType}}, {{memberGuestsNumber}}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </script>
+
+
         </section>
 
       </div>

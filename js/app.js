@@ -1,6 +1,5 @@
 //generic method call
 function fetchData(url, successResponse) {
-    var data;
       $.ajax({
           method: 'GET',
           async: false,
@@ -13,22 +12,31 @@ function fetchData(url, successResponse) {
       });
 }
 
+//pull API key fromt text
+// $.get('api_key', function (data) {
+//
+// })
+
 
 //parse through Events Data
 function parseEventsData(response) {
 
   //loop through data
-  for(var i=0; i < response.data.length; i++){
+  for(var i=0; i < response.results.length; i++){
 
       // assign data path for each variable
-      var eventId = response.data[i].id;
-      var eventName = response.data[i].name;
-      var eventTime = response.data[i].time;
-      var eventDescription = response.data[i].description;
-      var eventRsvpCount = response.data[i].yes_rsvp_count;
+      var eventId = response.results[i].id;
+      var eventName = response.results[i].name;
+      var eventTime = response.results[i].time;
+      var eventDescription = response.results[i].description;
+      var eventRsvpCount = response.results[i].yes_rsvp_count;
+      var eventUrl = response.results[i].event_url;
+
+      //parse through event_url for true ID number
+      var realId = eventUrl.substr(-10).slice(0,9);
 
       //to address events that don't have venues
-      if( typeof response.data[i].venue === 'undefined' )
+      if( typeof response.results[i].venue === 'undefined' )
          {
            var eventLocationName = 'TBD';
            var eventAddress = 'TBD';
@@ -36,14 +44,15 @@ function parseEventsData(response) {
            var eventState = 'TBD';
 
          } else {
-           var eventLocationName = response.data[i].venue.name;
-           var eventAddress = response.data[i].venue.address_1;
-           var eventCity = response.data[i].venue.city;
-           var eventState = response.data[i].venue.state;
+           var eventLocationName = response.results[i].venue.name;
+           var eventAddress = response.results[i].venue.address_1;
+           var eventCity = response.results[i].venue.city;
+           var eventState = response.results[i].venue.state;
          }
 
         //place data in object
         var eventData = {
+          realId: realId,
           eventId: eventId,
           eventName: eventName,
           eventTime: eventTime,
@@ -58,14 +67,34 @@ function parseEventsData(response) {
 
         //prints to HTML
         addEvents(eventData);
-
+  //
   }
 }
 
 // parse through Rsvp Data
 function parseRsvpData(response) {
   console.log("Parsing through data");
-  console.log(response);
+  console.log("RSVP Data", response);
+
+  for (var i = 0; i < response.data.length; i++){
+    var memberName = response.data[i].member.name;
+    var memberPhoto = response.data[i].member.photo_link;
+    var memberGuestsNumber = response.data[i].guests;
+    var memberRsvpStatus = response.data[i].response;
+    var memberType = response.data[i].member.event_context.host;
+
+    var memberData = {
+      memberName: memberName,
+      memberPhoto: memberPhoto,
+      memberGuestsNumber: memberGuestsNumber,
+      memberRsvpStatus: memberRsvpStatus,
+      memberType: memberType
+    }
+    console.log(memberData);
+
+    addRsvps(memberData);
+  }
+
 }
 
 // add Events to HTML
@@ -82,7 +111,7 @@ function addRsvps(members) {
   var source = $('#rsvp-template').html();
   var template = Handlebars.compile(source);
   var $body = $('.content-wrapper');
-    $body.append(template(events));
+    $body.append(template(members));
 }
 
 $(document).ready(function(){
@@ -108,18 +137,25 @@ $(document).ready(function(){
 
     //makes API call for Women Who Code Events
     (function () {
-        var eventsUrl = "https://api.meetup.com/Women-Who-Code-DC/events?&sign=true&photo-host=public&scroll=next_upcoming";
-        fetchData(eventsUrl, parseEventsData)
+        var eventsUrl = "https://api.meetup.com/2/events?&sign=true&photo-host=public&rsvp=yes&group_urlname=Women-Who-Code-DC&limited_events=true&text_format=plain&status=upcoming&page=20";
+        //put the api key after the ?
+
+        fetchData(eventsUrl, parseEventsData);
       }());
-
   });
 
-  //Selected Event Action
-  $selectEvent.on('click', function(e) {
-    e.preventDefault();
-    console.log("Active Link for selected Event");
+    //Selected Event Action
+    $(document).on('click', '.get-rsvp' ,function(e) {
+      e.preventDefault();
+      $('.content').empty();
 
-    //put the api key after the ?
-  });
+      eventid = $(this).attr('id');
+
+      (function (){
+        var rsvpUrl = "https://api.meetup.com/Women-Who-Code-DC/events/" + eventid + "/rsvps?&sign=true&photo-host=public";
+        //put the api key after the ?
+        fetchData(rsvpUrl, parseRsvpData);
+      }());
+    });
 
 });
