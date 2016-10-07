@@ -17,7 +17,6 @@ function fetchData(url, successResponse) {
 //
 // })
 
-
 //parse through Events Data
 function parseEventsData(response) {
 
@@ -78,17 +77,35 @@ function parseRsvpData(response) {
 
   for (var i = 0; i < response.data.length; i++){
     var memberName = response.data[i].member.name;
-    var memberPhoto = response.data[i].member.photo_link;
     var memberGuestsNumber = response.data[i].guests;
     var memberRsvpStatus = response.data[i].response;
     var memberType = response.data[i].member.event_context.host;
+
+    //pass template for memberBio
+    if(!response.data[i].member.bio){
+      memberBio = "Member of Women Who Code";
+    } else {
+      var memberBio = response.data[i].member.bio;
+    }
+
+    //parse for memberPhoto
+    if(!response.data[i].member.photo || response.data[i].member.photo === "undefined"){
+      memberPhoto = "http://www.clker.com/cliparts/6/J/I/R/a/t/black-afro-female-silhouette-md.png";
+    } else {
+      tmp = response.data[i].member.photo;
+      tmpString = JSON.stringify(response.data[i].member.photo);
+      tmpObj = JSON.parse(tmpString);
+      var memberPhoto = tmpObj.photo_link
+    }
+
 
     var memberData = {
       memberName: memberName,
       memberPhoto: memberPhoto,
       memberGuestsNumber: memberGuestsNumber,
       memberRsvpStatus: memberRsvpStatus,
-      memberType: memberType
+      memberType: memberType,
+      memberBio: memberBio
     }
     console.log(memberData);
 
@@ -155,6 +172,8 @@ $(document).ready(function(){
         var rsvpUrl = "https://api.meetup.com/Women-Who-Code-DC/events/" + eventid + "/rsvps?&sign=true&photo-host=public";
         //put the api key after the ?
         fetchData(rsvpUrl, parseRsvpData);
+        $('.content:empty').remove();
+
       }());
     });
 
