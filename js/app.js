@@ -13,9 +13,12 @@ function fetchData(url, successResponse) {
 }
 
 //pull API key fromt text
-// $.get('api_key', function (data) {
-//
-// })
+function getKey() {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", './api_key.txt', false);
+  xmlHttp.send(null);
+  return xmlHttp.responseText;
+}
 
 //parse through Events Data
 function parseEventsData(response) {
@@ -154,7 +157,9 @@ $(document).ready(function(){
 
     //makes API call for Women Who Code Events
     (function () {
-        var eventsUrl = "https://api.meetup.com/2/events?&sign=true&photo-host=public&rsvp=yes&group_urlname=Women-Who-Code-DC&limited_events=true&text_format=plain&status=upcoming&page=20";
+
+        var eventsUrl = "https://api.meetup.com/2/events?" + getKey() + "&sign=true&photo-host=public&rsvp=yes&group_urlname=Women-Who-Code-DC&limited_events=true&text_format=plain&status=upcoming&page=20";
+        console.log(eventsUrl);
         //put the api key after the ?
 
         fetchData(eventsUrl, parseEventsData);
@@ -165,7 +170,6 @@ $(document).ready(function(){
     $(document).on('click', '.get-rsvp' ,function(e) {
       e.preventDefault();
       $('.content').empty();
-
       eventid = $(this).attr('id');
 
       (function (){
