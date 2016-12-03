@@ -1,3 +1,4 @@
+console.log("WORK DAMM IT");
 //generic method call
 function fetchData(url, successResponse) {
       $.ajax({
@@ -180,5 +181,11 @@ $(document).ready(function(){
 
       }());
     });
+
+    //add user to event list
+    $('.here').on('click', function(){
+      tmp = []
+
+    })
 
 });
