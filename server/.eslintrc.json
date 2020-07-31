@@ -1,0 +1,20 @@
+{
+  "extends": "strongloop",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "arrowFunctions": true
+    }
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "max-len": [2, 180, 8,{ "ignoreComments": true }],
+    "arrowFunctions": 0,
+    "arrow-parens": [2, "always"],
+    "handle-callback-err": 0
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  }
+}

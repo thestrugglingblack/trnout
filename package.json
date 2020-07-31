@@ -1,28 +1,10 @@
 {
   "name": "trnout",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZuriHunter/trnout.git"
-  },
-  "keywords": [
-    "meetup",
-    "attendance",
-    "data"
-  ],
-  "author": "Zuri Hunter",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ZuriHunter/trnout/issues"
-  },
-  "homepage": "https://github.com/ZuriHunter/trnout#readme",
-  "dependencies": {
-    "handlebars": "^4.0.5",
-    "jquery": "^3.1.0"
+    "start": "(cd server && npm run start) & (cd client && npm run start)",
+    "start:client": "cd client && npm run start",
+    "start:server": "cd server && npm run start"
   }
 }
