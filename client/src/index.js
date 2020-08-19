@@ -1,12 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import ReactDOM from 'react-dom'
+import {Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
+import ReportBoard from "./components/report-board";
 import * as serviceWorker from './serviceWorker';
+import Header from "./components/header";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import EventDetails from "./components/event-details";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Router>
+          <div>
+              <Header/>
+              <Switch>
+                <Route exact path='/' component={App}/>
+                <Route path='/report' component={ReportBoard}/>
+                <Route exact path='/events/:id' render={() => {
+                    return <EventDetails/>
+                }}/>
+              </Switch>
+          </div>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

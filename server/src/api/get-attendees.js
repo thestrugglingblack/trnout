@@ -14,7 +14,7 @@ module.exports = async(req, res, next) => {
       'Content-Type': 'application/json'
     }}).then(function(response, err) {
     if (err){
-      res.json({
+      return res.json({
         status: err.status,
         message: err
       });
@@ -24,7 +24,7 @@ module.exports = async(req, res, next) => {
       const attendeeObj = {
         memberName: r.member.name,
         photo: r.member.photo ? r.member.photo.highres_link : '',
-        host: r.member.event_context.host,
+        host: r.member.event_context ? r.member.event_context : 'member',
         rsvp: r.rsvp.response,
         guest: r.rsvp.guests
       };
