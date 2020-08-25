@@ -15,7 +15,7 @@ module.exports = async(req, res, next) => {
     }}).then(function(response, err) {
     if (err){
       return res.json({
-        status: err.status,
+        status: false,
         message: err
       });
     }
@@ -33,5 +33,17 @@ module.exports = async(req, res, next) => {
     });
 
     return res.json(attendeesList);
+  }).catch((err) => {
+    if (err.message.includes('400')){
+      return res.json({
+        status: false,
+        code: 400,
+        message: err
+      });
+    }
+    return res.json({
+      status: false,
+      error: err.message
+    });
   });
 };

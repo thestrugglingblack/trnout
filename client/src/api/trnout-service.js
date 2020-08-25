@@ -28,7 +28,14 @@ const retrieveAttendees = async (eventId) => {
         method: 'GET'
     };
     const data = await request(`/events/${eventId}/attendees`, options);
-    console.log('DATA', data);
+    if(data.status === false){
+        if(data.code === 400){
+            return {
+                code: 400,
+                message: 'Event must start for attendees list to be presented.'
+            }
+        }
+    }
     if (!data ) {
         throw new Error(`Something with wrong with retrieving all attendees for ${eventId}`);
     }
