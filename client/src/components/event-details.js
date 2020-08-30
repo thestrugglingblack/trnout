@@ -45,7 +45,7 @@ const EventDetails = () => {
             <label>Waitlist: {details.waitlist} </label><br/>
             <label>RSVP: {details.rsvp}</label><br/>
             <label>Venue:</label><br/>
-            {formatVenue(details.venu)}<br/>
+            {formatVenue(details.venue)}<br/>
             <label>Online: {details.online}</label><br/>
             <a href={details.url}>Link</a><br/>
             <label>Description</label><br/>
@@ -53,7 +53,7 @@ const EventDetails = () => {
 
             <h3>Attendees</h3><br/>
             <Search onSearch={handleQuery}/>
-            <AttendeeList eventId={eventId} filterQuery={query}/>
+            <AttendeeList eventId={eventId} event={details} filterQuery={query}/>
         </div>: <div>Loading!</div>}
 
     </div>

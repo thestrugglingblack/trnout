@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import AttendeeCard from './attendee-card';
 import {retrieveAttendees} from "../api/trnout-service";
 
-const AttendeeList = ({eventId, filterQuery}) => {
+const AttendeeList = ({eventId, filterQuery, event}) => {
     const [attendees, setAttendees] = useState();
 
 
@@ -21,10 +21,10 @@ const AttendeeList = ({eventId, filterQuery}) => {
     const showAttendeeList = () => {
 
         if(!filterQuery || filterQuery === ''){
-            return attendees ? attendees.map(attendee => <AttendeeCard attendee={attendee}  />) : <div>Loading</div>
+            return attendees ? attendees.map(attendee => <AttendeeCard event={event} attendee={attendee}  />) : <div>Loading</div>
         } else {
             return attendees.filter(a => a.memberName.toLowerCase().includes(filterQuery.toLowerCase())).map((filteredMember, index) =>
-                <AttendeeCard key={index} attendee={filteredMember}/>
+                <AttendeeCard event={event} key={index} attendee={filteredMember}/>
             )
         }
     };

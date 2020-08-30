@@ -23,7 +23,6 @@ const retrieveEvent = async (eventId) => {
 };
 
 const retrieveAttendees = async (eventId) => {
-    console.log('EventId Passed', eventId);
     const options = {
         method: 'GET'
     };
@@ -42,8 +41,26 @@ const retrieveAttendees = async (eventId) => {
     return data;
 };
 
+const updateAttendance = async (attendance) => {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(attendance),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    };
+
+    const data = await request(`/attendance`, options);
+    if (!data ) {
+        throw new Error(`Something with wrong with updating attendee list`);
+    }
+    return data;
+}
+
 export {
     retrieveEvent,
     retrieveEvents,
-    retrieveAttendees
+    retrieveAttendees,
+    updateAttendance
 }

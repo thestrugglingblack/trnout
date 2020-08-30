@@ -21,7 +21,7 @@ module.exports = async(req, res, next) => {
       time: d.local_time,
       waitlist: d.waitlist_count,
       rsvp: d.yes_rsvp_count,
-      venu: d.venue,
+      venue: d.venue,
       online: d.is_online_event,
       url: d.link,
       desc: d.description

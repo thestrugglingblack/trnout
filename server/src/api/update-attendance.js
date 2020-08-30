@@ -9,7 +9,6 @@ module.exports = async(req, res, next) => {
     if (err){
       return res.status(500).send(err);
     }
-
     if (!entry || !entry.length){
       const newEntry = new EntryModel(req.body);
 
@@ -21,22 +20,28 @@ module.exports = async(req, res, next) => {
       });
     } else {
       const entryId = entry[0]._id;
-      EntryModel.findByIdAndUpdate(entryId,
-        {$push: {
-          attendees: {
-            $each: req.body.attendees,
-            $sort: -1
+      const currentAttendees = entry[0].attendees;
+
+      const attendeeAlreadyPresent = currentAttendees.find((attendee) => attendee.memberName === req.body.attendees[0].memberName);
+      if (attendeeAlreadyPresent){
+        return res.status(200).send(req.body);
+      } else {
+        EntryModel.findByIdAndUpdate(entryId,
+          {$push: {
+            attendees: {
+              $each: req.body.attendees,
+              $sort: -1
+            }
           }
-        }
-        }, (err, entry) => {
-          if (err){
-            return res.status(500).send(err);
-          }
-          console.log('Updated attendees array', entry);
-          res.status(200).send({
-            data: entry
+          }, (err, entry) => {
+            if (err){
+              return res.status(500).send(err);
+            }
+            res.status(200).send({
+              data: entry
+            });
           });
-        });
+      }
     }
   });
 };
