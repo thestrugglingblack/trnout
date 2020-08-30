@@ -27,7 +27,6 @@ const AttendeeCard = ({attendee, event}) => {
         updateAttendance(attendanceObject).then((data) => {
             if(data){
                 setHere(true);
-                return console.log('Success', data)
             }
         })
     };
@@ -40,7 +39,7 @@ const AttendeeCard = ({attendee, event}) => {
 
         {
             here ? <div>Here</div> : <button  onClick={() => {
-            submitAttendance()
+            submitAttendance();
             return false;}
             }>
                 Check-In

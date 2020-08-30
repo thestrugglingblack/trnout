@@ -1,4 +1,5 @@
 import React from 'react';
+import {CardDeck} from "react-bootstrap";
 import EventCard from './event-card';
 
 const EventList = ({events, filterQuery}) => {
@@ -15,8 +16,11 @@ const EventList = ({events, filterQuery}) => {
         }
     }
     return <div>
-        {events ? processsedList() : <div>Loading</div>
-        }
+            <CardDeck>
+            {
+                events ? processsedList() : <div>Loading</div>
+            }
+            </CardDeck>
     </div>
 }
 

@@ -6,7 +6,7 @@ import '../styles/header.css';
 const Header = () => {
     return(
     <div>
-        <Navbar className={'nav'}>
+        <Navbar className={'nav'} fixed={'top'}>
             <div className="navbar-header">
                 <Navbar.Brand className="navbar-brand"><Link to={'/'}>TrnOut</Link></Navbar.Brand>
             </div>

@@ -5,8 +5,10 @@ import App from './App';
 import ReportBoard from "./components/report-board";
 import * as serviceWorker from './serviceWorker';
 import Header from "./components/header";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import EventDetails from "./components/event-details";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/styles/index.css';
 
 
 ReactDOM.render(
@@ -14,14 +16,15 @@ ReactDOM.render(
       <Router>
           <div>
               <Header/>
-              <br/>
-              <Switch>
-                <Route exact path='/' component={App}/>
-                <Route path='/report' component={ReportBoard}/>
-                <Route exact path='/events/:id' render={() => {
-                    return <EventDetails/>
-                }}/>
-              </Switch>
+              <div className={'base'}>
+                  <Switch>
+                    <Route exact path='/' component={App}/>
+                    <Route path='/report' component={ReportBoard}/>
+                    <Route exact path='/events/:id' render={() => {
+                        return <EventDetails/>
+                    }}/>
+                  </Switch>
+              </div>
           </div>
       </Router>
   </React.StrictMode>,

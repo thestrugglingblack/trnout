@@ -47,12 +47,11 @@ const DisplayBoard = () => {
                 </Row>
 
             </Jumbotron>
-            <Row  xs={6}>
                 <Search onSearch={handleQuery} placeholder={'Search Events...'}/>
-            </Row>
-            <Row fluid>
+            {/*<Row>*/}
+
                 <EventList events={events} filterQuery={query}/>
-            </Row>
+            {/*</Row>*/}
         </Container>
     </div>
     )
