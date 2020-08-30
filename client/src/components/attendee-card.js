@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {updateAttendance} from "../api/trnout-service";
 const AttendeeCard = ({attendee, event}) => {
     const [here, setHere] = useState(false);
-    console.log('Event', event);
 
     const submitAttendance = () => {
         const modifiedAttendee = {

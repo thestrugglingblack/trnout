@@ -52,7 +52,7 @@ const EventDetails = () => {
             {details.desc}<br/>
 
             <h3>Attendees</h3><br/>
-            <Search onSearch={handleQuery}/>
+            <Search onSearch={handleQuery} placeholder={'Search Attendees'}/>
             <AttendeeList eventId={eventId} event={details} filterQuery={query}/>
         </div>: <div>Loading!</div>}
 

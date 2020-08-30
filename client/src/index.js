@@ -14,6 +14,7 @@ ReactDOM.render(
       <Router>
           <div>
               <Header/>
+              <br/>
               <Switch>
                 <Route exact path='/' component={App}/>
                 <Route path='/report' component={ReportBoard}/>

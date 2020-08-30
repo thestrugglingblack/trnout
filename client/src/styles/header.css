@@ -1,0 +1,27 @@
+.nav {
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+    font-family: 'Arial', sans-serif;
+}
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    float:none;
+    font-size: 26px !important;
+    color: #e34b4b !important;
+}
+.nav a {
+    color: #e34b4b !important;
+    font-weight: bold;
+    letter-spacing: 3px !important;
+}
+.nav a:hover {
+     color: #e34b4b !important;
+     text-decoration: none !important;
+}
+
