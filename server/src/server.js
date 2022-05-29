@@ -14,7 +14,7 @@ server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/trnout', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/trnout.sh', { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 
 // Added check for DB connection
