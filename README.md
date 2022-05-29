@@ -55,12 +55,13 @@ Have you always wondered how many attendees were signed up for your event? How a
 To develop on the TrnOut application it is recommended to run the application via NodeJS. 
 
 **Server**
-2. Run `npm run start:server` to start the server.
-3. Go to http://localhost:6543/status to verify that the server is running correctly.
+
+1.Run `npm run start:server` to start the server.
+2.Go to http://localhost:6543/status to verify that the server is running correctly.
 
 **Client**
-4. Run `npm run start:client` to start the client
-5. Go to http://localhost:3000 to view the TrnOut application.
+1. Run `npm run start:client` to start the client
+2. Go to http://localhost:3000 to view the TrnOut application.
 
 **Database**
 1. Use Homebrew and run `brew services start mongodb-community@4.0` to start MongoDB
