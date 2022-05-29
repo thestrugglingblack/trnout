@@ -14,7 +14,7 @@
 * [Getting Started](#getting-started)
 * [Project Roadmap](#project-roadmap)
 * [Contributing](#contributing)
-* [Additional Resources](#additional-resources)
+* [Copyright](#copyright)
 
 ## Overview
 Have you always wondered how many attendees were signed up for your event? How about wishing to keep an official list on who actually showed up your event? Well, **TrnOut** is every event organizers dream tool. Paired with the Meet Up API it provides powerful insight and management capabilities for event organizing. It can do the following:
@@ -85,6 +85,7 @@ To develop on the TrnOut application it is recommended to run the application vi
   - [ ] Eventbrite
 
 ## Contributing
+_Coming Soon!_
 
 ## Copyright
 All licenses in this repository are copyrighted by their respective authors.
