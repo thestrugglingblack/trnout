@@ -56,8 +56,8 @@ To develop on the TrnOut application it is recommended to run the application vi
 
 **Server**
 
-1.Run `npm run start:server` to start the server.
-2.Go to http://localhost:6543/status to verify that the server is running correctly.
+1. Run `npm run start:server` to start the server.
+2. Go to http://localhost:6543/status to verify that the server is running correctly.
 
 **Client**
 1. Run `npm run start:client` to start the client
