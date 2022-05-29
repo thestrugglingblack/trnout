@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  trnout-client:
+    build: ./client/
+    ports:
+      - "3000:3000"
+
+  trnout-server:
+    build: ./server/
+    ports:
+      - "6543:6543"
+
+  trnout-db:
+    image: mongo:4.0.21
+    hostname: trnout-db
+    container_name: trnout-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      - "mongo_vol:/data/db"
+volumes:
+  mongo_vol:

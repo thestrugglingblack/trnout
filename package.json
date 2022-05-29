@@ -2,6 +2,7 @@
   "name": "trnout",
   "version": "0.0.0",
   "private": true,
+  "author": "Zuri Hunter",
   "scripts": {
     "start": "(cd server && npm run start) & (cd client && npm run start)",
     "start:client": "cd client && npm run start",
